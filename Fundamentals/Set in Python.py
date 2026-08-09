@@ -1,95 +1,139 @@
 # Set in Python is a collection of unique items that are unordered and mutable.
-# Sets are written with curly braces.
+# Sets are written with curly braces {}.
 # Sets do not allow duplicate values.
 # Sets cannot be accessed by index like lists.
+# Sets are useful when we need unique values and fast membership checks.
 
-myset = {1, 2, 3, 4, "apple", "banana"}
+# ---------------------------
+# Beginner concepts
+# ---------------------------
+
+myset = {1, 2, 3, 4, 'apple', 'banana'}
 print(myset)
 print(type(myset))
 
 numbers = {1, 2, 2, 3, 3, 4}
-print(numbers)   # {1, 2, 3, 4} 
+print(numbers)     # duplicates are removed automatically
 
-myset = {"a", "b", "c"}
-print(myset)     # order may be different every time
+myset = {'a', 'b', 'c'}
+print(myset)       # order is not guaranteed
 
-myset = {"apple", "banana", "grape"}
+# print(myset[0])  # This will raise an error because set is not indexable
 
-#print(myset[0])  # This will raise an error
+# ---------------------------
+# Add and update
+# ---------------------------
 
-myset = {"apple", "banana"}
-myset.add("orange") #add an item to the set
+myset = {'apple', 'banana'}
+myset.add('orange')
 print(myset)
 
-myset = {"apple", "banana"}
-myset.update(["grape", "mango"]) #add multiple items to the set
+myset.update(['grape', 'mango'])
 print(myset)
 
-myset = {"apple", "banana", "grape"}
-myset.remove("banana") #remove an item from the set
+# ---------------------------
+# Remove and pop
+# ---------------------------
+
+myset = {'apple', 'banana', 'grape'}
+myset.remove('banana')
 print(myset)
 
-myset = {"apple", "banana", "grape"}
-myset.discard("mango")  # no error even if item is not present
-print(myset) 
-
-myset = {"apple", "banana", "grape"}
-print(myset.pop())   # removes and returns a random item
+myset.discard('mango')        # no error even if value is absent
 print(myset)
 
-myset = {"apple", "banana"}
-myset.clear() #clear all items from the set
-print(myset)   # set()
+print(myset.pop())            # removes and returns a random item
+print(myset)
 
-myset = {"apple", "banana", "grape"}
+myset.clear()                 # remove all items
+print(myset)
 
-print("apple" in myset)   # True
-print("mango" in myset)   # False
+# ---------------------------
+# Membership check
+# ---------------------------
+
+myset = {'apple', 'banana', 'grape'}
+print('apple' in myset)
+print('mango' in myset)
+
+# ---------------------------
+# Set operations
+# ---------------------------
 
 set1 = {1, 2, 3, 4}
 set2 = {3, 4, 5, 6}
 
-print(set1.union(set2))          # {1, 2, 3, 4, 5, 6}
-print(set1.intersection(set2))   # {3, 4}
-print(set1.difference(set2))     # {1, 2}
-print(set1.symmetric_difference(set2))  # {1, 2, 5, 6}
+print(set1.union(set2))
+print(set1.intersection(set2))
+print(set1.difference(set2))
+print(set1.symmetric_difference(set2))
 
-# Set in Python is a collection of unique items that are unordered and mutable.
-# Sets are written with curly braces.
-# Sets do not allow duplicate values.
+# ---------------------------
+# Set comprehension
+# ---------------------------
 
-myset = {1, 2, 3, "apple", "dog", True}
-print(myset)
+squares = {x * x for x in range(1, 6)}
+print(squares)
 
-print(len(myset))        # length of the set
-print("apple" in myset)  # check if an item exists
+letters = {'a', 'b', 'c'}
+upper_letters = {ch.upper() for ch in letters}
+print(upper_letters)
 
-myset.add("banana")      # add one item
-print(myset)
+# ---------------------------
+# Frozen set
+# ---------------------------
 
-myset.update(["grape", "orange"])  # add multiple items
-print(myset)
+frozen = frozenset({1, 2, 3, 4})
+print(frozen)
+# frozen.add(5)   # this will raise an error because frozenset is immutable
 
-myset.remove("dog")      # remove an item
-print(myset)
+# ---------------------------
+# Important advanced concepts
+# ---------------------------
 
-myset.discard("mango")   # safely remove item if present
-print(myset)
+# 1. Sets are unordered.
+# 2. They store unique values only.
+# 3. They are faster than lists for membership checks.
+# 4. They support mathematical operations like union and intersection.
+# 5. They are useful for removing duplicates and comparing collections.
 
-print(myset.pop())       # removes and returns a random item
-print(myset)
+# ---------------------------
+# Example problems
+# ---------------------------
 
-myset.clear()            # remove all items
-print(myset)
+# Problem 1: Remove duplicates from a list
+items = [1, 2, 2, 3, 4, 4, 5]
+unique_items = set(items)
+print(unique_items)
 
-students_a = {"Aman", "Riya", "John"}
-students_b = {"John", "Neha", "Aman"}
+# Problem 2: Find common elements between two lists
+list1 = ['apple', 'banana', 'orange']
+list2 = ['banana', 'grape', 'apple']
+common = set(list1) & set(list2)
+print(common)
 
-print(students_a | students_b)   # union
-print(students_a & students_b)   # intersection
+# Problem 3: Find students who are present in both groups
+group_a = {'Aman', 'Riya', 'John'}
+group_b = {'John', 'Neha', 'Aman'}
+present_in_both = group_a & group_b
+print(present_in_both)
 
-my_list = [1, 2, 2, 3]
-my_set = {1, 2, 2, 3}
+# ---------------------------
+# Real-life use of sets
+# ---------------------------
+# Sets are used in tasks like:
+# - removing duplicates
+# - checking if a value exists
+# - comparing two groups of data
+# - performing mathematical set operations
 
-print(my_list)  # [1, 2, 2, 3]
-print(my_set)   # {1, 2, 3}
+# Example:
+students_a = {'Aman', 'Riya', 'John'}
+students_b = {'John', 'Neha', 'Aman'}
+print(students_a | students_b)  # union
+print(students_a & students_b)  # intersection
+
+# Summary:
+# A set is an unordered collection of unique elements.
+# It is useful for membership checks, removing duplicates, and set-based logic.
+# It is different from a list because it does not keep duplicates and cannot be indexed.
